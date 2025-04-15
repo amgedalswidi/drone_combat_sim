@@ -1,2 +1,83 @@
 #VRML_SIM R2023b utf8
-WorldInfo { basicTimeStep 32 }
+
+WorldInfo {
+  basicTimeStep 32
+}
+
+Viewpoint {
+  orientation -0.5 0.85 0.15 1.6
+  position 0 2 2
+}
+
+TexturedBackground {}
+TexturedBackgroundLight {}
+
+# Simple flat ground
+Floor {
+  size 10 10
+}
+
+# Drone instance
+Robot {
+  translation 0 0 0.3
+  rotation 0 1 0 0
+  children [
+    Camera {
+      name "drone_camera"
+    }
+    DistanceSensor {
+      name "drone_ultrasonic"
+      type "infra-red"
+    }
+    LED {
+      name "laser_led"
+    }
+  ]
+  controller "drone_controller"
+  name "CombatDrone"
+}
+
+# Targets
+Solid {
+  translation 2 1 0.1
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.2
+      }
+    }
+  ]
+}
+
+Solid {
+  translation -2 -1 0.1
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+      }
+      geometry Box {
+        size 0.3 0.3 0.3
+      }
+    }
+  ]
+}
+
+Solid {
+  translation 0 -2 0.1
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.2
+      }
+    }
+  ]
+}

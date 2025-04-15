@@ -1,2 +1,6 @@
 version: R2023b
+publish: true
+type: demo
 world: worlds/drone_combat_sim.wbt
+
+
